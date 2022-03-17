@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+<body>
+    <h1>Manejo Eventos DOM</h1>
+    <form>
+        <label for="valorventa">Valor Venta</label>
+        <input type="number" id="valorventa" name="valorventa">
+        <span id="mvalorventa" style="color: red"></span>
+        <br>
+        <label for="porcomision">Porcentaje de comision</label>
+        <input type="number" id="porcomision" name="porcomision">
+        <span id="mporcomision" style="color: red"></span>
+        <br>
+        <label for="valorcomision">Valor de la comision</label>
+        <span id="mvalorcomision" style="color: red"></span>
+        <br>
+        <br>
+        <button type="button" id="btncalcular" name="btncalcular">Calcular comision</button>
+        
+    </form>
+    <script>
+        let valorventa = document.getElementById('valorventa');
+        let porcomision= document.getElementById('porcomision');
+        let mvalorventa=document.getElementById('mvalorventa');
+        const mporcomision=document.getElementById('mporcomision')
+        let mvalorcomision=document.getElementById('mvalorcomision')
+        let btncalcular=document.getElementById('btncalcular')
+        // manejo eventos en el dom 
+
+        valorventa.onfocus = ()=>{
+            // se puede crear una variable para reemplazar el document.get element se puede poner la variable de la linea 33
+            document.getElementById('mvalorventa').innerHTML="* El valor de la venta es obligatorio"
+        }
+        valorventa.onblur=()=>{
+            mvalorventa.innerHTML="";
+        }
+        //metodo add event listener 
+        document.getElementById('porcomision').addEventListener('focus',()=>{
+            document.getElementById('mporcomision').innerHTML="el porcentaje de comision es obligatorio"
+        })
+        porcomision.addEventListener('blur',function(){
+            mporcomision.innerText=""
+        })
+        /*porcomision.addEventListener('mouseenter',()=>{
+            alert("Recuerde que el porcentaje no puede ser superior a 3")
+
+        })*/
+
+        //evento clic de calcular comision 
+        //************* se puede ingresar de distintas maneras la funcion sea como la linea 60 a la 62 o como se hace en la linea 65 a 69 
+        /*btncalcular.addEventListener('click',()=>{
+            let resultado =parseFloat(document.getElementById('valorventa').value) * parseFloat(porcomision.value)/100
+            mvalorcomision.innerText=resultado;
+        })*/
+
+        function calcular (valorventa, comision){
+            let resultado =parseFloat(document.getElementById('valorventa').value) * parseFloat(porcomision.value)/100
+            mvalorcomision.innerText=resultado;
+        }
+        btncalcular.addEventListener('click',()=>
+            calcular(valorventa.value, porcomision.value));
+            
+        
+
+    </script>
+    
+</body>
+</html>
